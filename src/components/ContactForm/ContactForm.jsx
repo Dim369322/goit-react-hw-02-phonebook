@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import { FormLabel, FormInput, Form, FormButton } from './ContactForm.styled';
 
 class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
-
   static propTypes = {
     onFormSubmit: PropTypes.func.isRequired,
   };

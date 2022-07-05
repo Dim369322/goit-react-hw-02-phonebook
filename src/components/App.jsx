@@ -27,24 +27,24 @@ class App extends Component {
         ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
       );
 
+      evt.target.reset();
+
       return filteredContact
         ? alert(`${contact.name} is already in contacts`)
         : {
-            name: name.value.toLowerCase(),
             contacts: [contact, ...prevState.contacts],
           };
     });
   };
 
   changeFilter = evt => {
-    this.setState({ filter: evt.currentTarget.value.trim() });
+    this.setState({ filter: evt.currentTarget.value });
   };
 
   removeContact = id => {
     const filtered = this.state.contacts.filter(contact => contact.id !== id);
 
     this.setState({
-      name: '',
       contacts: filtered,
     });
   };
@@ -62,7 +62,7 @@ class App extends Component {
         <ContactForm onFormSubmit={this.onFormSubmit} />
 
         <h2>Contacts</h2>
-        <Filter onChangeFilter={this.changeFilter} />
+        <Filter value={this.state.filter} onChangeFilter={this.changeFilter} />
         <ContactList
           contacts={filteredContact}
           onRemoveContact={this.removeContact}
