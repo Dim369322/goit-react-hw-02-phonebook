@@ -26,14 +26,14 @@ class App extends Component {
       const filteredContact = prevState.contacts.find(
         ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
       );
-
-      evt.target.reset();
-
+  
       return filteredContact
         ? alert(`${contact.name} is already in contacts`)
-        : {
+        : (
+          evt.target.reset(), 
+          {
             contacts: [contact, ...prevState.contacts],
-          };
+          } );
     });
   };
 
